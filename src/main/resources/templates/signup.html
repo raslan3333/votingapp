@@ -1,0 +1,42 @@
+<!DOCTYPE "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--    <link rel="stylesheet" type="text/css" media="all"
+              href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize.min.css" media="screen,projection"/>
+    <link rel='stylesheet' type="text/css" href='style.css' />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+
+<body>
+<form>
+
+    <table>
+            <tr><td>username</td> <td> <input th:type="text" name="username" /></td></tr>
+            <tr><td>Password</td> <td> <input th:type="password" name="password" /></td></tr>
+            <tr><td>Firstname</td><td> <input th:type="text" name="firstname" /></td></tr>
+            <tr><td>Lastname</td><td> <input th:type="text" name="lastname" value="#{signupBean.lastname}"/></td></tr>
+            <tr><td>Email</td><td> <input th:type="email" name="email" value="#{signupBean.email}"/></td></tr>
+            <tr><td>birthday</td><td> <input th:type="date" name="birthday" /></td></tr>
+            <tr><td></td><td> <button th:type="submit" class="btn waves-light" value="logout" /></td></tr>
+
+    </table>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="materialize.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+
+</html>

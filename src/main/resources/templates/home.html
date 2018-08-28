@@ -1,0 +1,41 @@
+<!DOCTYPE "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all"
+              href="../static/assets/css/materialize.min.css" th:href="@{/css/materialize.min.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel='stylesheet' type="text/css" href='../static/assets/css/style.css' th:href="@{/css/style.css}"/>
+
+
+</head>
+
+<body>
+
+    <nav id="navbar" class="row">
+        <div class="nav-wrapper z-depth-0">
+
+            <a id="logo" href="/" class="brand-logo">VA</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <form>
+                        <a class="logoutbtn btn white z-depth-1"
+                           id="logoutbtn">logout</a>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="materialize.min.js"></script>
+    <script src="main.js"></script>-->
+
+</body>
+
+</html>
+
