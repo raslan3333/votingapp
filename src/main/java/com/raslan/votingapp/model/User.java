@@ -2,12 +2,13 @@ package com.raslan.votingapp.model;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 
-@Scope
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -38,6 +39,24 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public User() {
+    }
+
+    public User(@Size(min = 3, max = 40) String username,
+                String email, String firstname,
+                String lastname,
+                int age, @Length(min = 6, max = 100) String password,
+                Date birthday, boolean enabled, Role role) {
+        this.username = username;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.password = password;
+        this.birthday = birthday;
+        this.enabled = enabled;
+        this.role = role;
+    }
 
     public Long getId() {
         return id;

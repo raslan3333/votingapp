@@ -1,6 +1,7 @@
 package com.raslan.votingapp.service;
 
 import com.raslan.votingapp.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ import java.util.List;
  * Custom implementation of UserDetails
  */
 public class CustomUserDetails implements UserDetails {
+
 
     private User user;
 
