@@ -21,8 +21,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 
-@Configuration
-@EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -59,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/", "/users/signup").permitAll()
+                .authorizeRequests().antMatchers("/", "/users/signup", "/users").permitAll()
                 .anyRequest().hasRole("USER")
                 .and()
                 .formLogin()

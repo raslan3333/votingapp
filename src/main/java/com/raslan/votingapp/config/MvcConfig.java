@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.transaction.TransactionScoped;
 
-@TransactionScoped
+
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
@@ -18,6 +18,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/profile").setViewName("profile");
         registry.addViewController("/hello").setViewName("hello");
+        registry.addViewController("/users/signup").setViewName("signup");
 
     }
 }

@@ -7,11 +7,11 @@
     <title>Good Thymes Virtual Grocery</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!--    <link rel="stylesheet" type="text/css" media="all"
-              href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize.min.css" media="screen,projection"/>
-    <link rel='stylesheet' type="text/css" href='style.css' />
+              <!--href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />&ndash;&gt;-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
+    <!--&lt;!&ndash;Import materialize.css&ndash;&gt;-->
+    <!--<link type="text/css" rel="stylesheet" href="materialize.min.css" media="screen,projection"/>-->
+    <!--<link rel='stylesheet' type="text/css" href='style.css' />-->
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<form th:action="@{/signup.html}" th:object="${user}">
+<form method="post"  th:object="${user}">
 
     <table>
             <tr><td>username</td> <td> <input th:type="text" name="username" th:field="*{username}" /></td></tr>
@@ -36,9 +36,9 @@
 </form>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="materialize.min.js"></script>
-<script src="main.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="materialize.min.js"></script>-->
+<!--<script src="main.js"></script>-->
 
 </body>
 

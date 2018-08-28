@@ -40,9 +40,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-websocket')
     compile('org.springframework.session:spring-session-core')
     compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE')
-    compile ('org.postgresql:postgresql:42.2.2')
     compile('javax.xml.bind:jaxb-api:2.3.0')
-    runtime('org.postgresql:postgresql')
+    compile('org.postgresql:postgresql')
     runtime('org.springframework.boot:spring-boot-devtools')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
