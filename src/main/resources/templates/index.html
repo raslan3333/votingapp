@@ -7,8 +7,8 @@
     <title>VotingApp</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="../static/assets/css/materialize.min.css" th:href="@{/css/materialize.min.css}" media="all"/>
-    <link rel="stylesheet" href="../static/assets/css/style.css" th:href="@{/css/style.css}" media="all"/>
+    <link rel="stylesheet" href="assets/css/materialize.min.css" th:href="@{assets/css/materialize.min.css}" media="all"/>
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{assets/css/style.css}" media="all"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
@@ -35,7 +35,7 @@
                 <form th:action="@{/login}" method="post" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input  id="username" name="username" />
+                            <input id="username" name="username" />
                         </div>
                     </div>
                     <div class="row">
@@ -51,9 +51,10 @@
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="materialize.min.js"></script>
-    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+    <script src="assets/js/materialize.min.js" type="text/javascript" th:src="@{assets/js/materialize.min.js}"></script>
+    <script src="assets/js/main.js" type="text/javascript" th:src="@{assets/js/main.js}"></script>
 
 </body>
 
