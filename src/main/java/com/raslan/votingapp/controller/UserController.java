@@ -1,25 +1,15 @@
 package com.raslan.votingapp.controller;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.raslan.votingapp.model.User;
+import com.raslan.votingapp.model.UserData;
 import com.raslan.votingapp.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.JsonbHttpMessageConverter;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice;
-
 import javax.validation.Valid;
-import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("users")
@@ -35,28 +25,40 @@ public class UserController {
     }
 
     @GetMapping
-    public User getUser(){
-        return userRepository.findByUsername("raslan");
+    public Iterable<User> getUser(){
+/*         user=userRepository.findByUsername("ismail");
+         user.setUsername("raslan22");
+         model.addAttribute("user", user);
+         userRepository.save(user);*/
+        return  userRepository.findAll();
+
+    }
+
+    @GetMapping("/{id}")
+    User getOneUser(@PathVariable Long id){
+        return userRepository.findById(id).get();
     }
 
     @PostMapping("/signup")
-    public User postUser(@Valid @RequestBody  User user ){
-
-        System.out.println(user.getUsername());
+    public User postUser(@Valid @RequestBody  User user){
         userRepository.save(user);
         return user;
     }
 
-    @PutMapping
-    public String updateUser(){
-        return "update user";
+
+    @PutMapping("/{id}")
+    User updateUser(@Valid @RequestBody UserData userData, @PathVariable Long id ) throws Exception {
+        return userRepository.findById(id).map(us -> {
+            BeanUtils.copyProperties(userData , us);
+            us.setId(id);
+            return userRepository.save(us);
+        }).get();
     }
 
-    @DeleteMapping
-    public String deleteUser(){
-        return "delete user";
+
+    @DeleteMapping("/{id}")
+    void deleteUser(@PathVariable Long id){
+        userRepository.deleteById(id);
     }
-
-
 
 }

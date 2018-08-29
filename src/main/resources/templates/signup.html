@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<form method="post"  th:object="${user}">
+<form method="get"  th:object="${user}">
 
     <table>
             <tr><td>username</td> <td> <input th:type="text" name="username" th:field="*{username}" /></td></tr>

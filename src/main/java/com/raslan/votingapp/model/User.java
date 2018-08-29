@@ -1,7 +1,7 @@
 package com.raslan.votingapp.model;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -9,18 +9,18 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
 
-
 @Entity
+@DynamicUpdate
 @Table(name = "users")
 public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, updatable = false, nullable = false)
     @Size(min = 3, max = 40)
     private String username;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     @Column
     private String firstname;
@@ -29,7 +29,7 @@ public class User implements Serializable {
     @Column
     private int age;
     @Column
-    @Length(min = 6, max = 100)
+    @Length(min = 2, max = 100)
     private String password;
     @Column
     private Date birthday;
@@ -58,6 +58,7 @@ public class User implements Serializable {
         this.enabled = enabled;
         this.role = role;
     }
+
 
     public Long getId() {
         return id;
