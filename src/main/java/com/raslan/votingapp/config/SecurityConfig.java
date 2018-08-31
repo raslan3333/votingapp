@@ -1,7 +1,9 @@
 package com.raslan.votingapp.config;
 
-
 import com.raslan.votingapp.service.CustomUserDetailsServiceImpl;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionFactoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,11 +13,14 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Configuration
 @EnableWebSecurity
@@ -31,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+
     }
 
     @Bean
@@ -59,30 +65,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+
         http
-                .authorizeRequests().antMatchers("/signup","/", "/users/signup", "/users").permitAll()
-                .anyRequest().hasRole("USER")
+                .authorizeRequests().antMatchers("/profile", "/user/**", "/signup")
+                .permitAll()
+                .antMatchers("/profile").access("permitAll()")
+                .antMatchers("/home")
+                .hasAnyRole("USER").anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .successHandler(loginSuccessHandler())
+                .successHandler(loginSuccessHandler()).permitAll()
                 .failureHandler(loginFailureHandler())
                 .and()
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/");
-
-
     }
 
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
-        return (request, response, authentication) -> response.sendRedirect("/home");
+        return (request, response, authentication) ->{
+
+            response.sendRedirect("/home");
+        };
     }
 
     private AuthenticationFailureHandler loginFailureHandler() {
         return (request, response, exception) -> {
+
         };
     }
 

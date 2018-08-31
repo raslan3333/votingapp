@@ -7,13 +7,20 @@
     <title>signup</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!--
+    <link rel="stylesheet" href="/static/assets/css/materialize.min.css" th:href="@{assets/css/materialize.min.css}" media="all"/>
+    <link rel="stylesheet" href="/static/assets/css/style.css" th:href="@{assets/css/style.css}" media="all"/>
+-->
 
 </head>
 
 <body>
+<h1 style="color: #00acc1">signup</h1>
 <form action="#" th:action="@{/signup}" method="post"  th:object="${user}">
-
-    <table>
+<div class="row">
+    <div class="col l4 m4"></div>
+    <div class="col l4 m4">
+        <table>
             <tr><td>username</td> <td> <input th:type="text" name="username" th:field="*{username}" /></td></tr>
             <tr><td>Password</td> <td> <input th:type="password" name="password" th:field="*{password}"/></td></tr>
             <tr><td>Firstname</td><td> <input th:type="text" name="firstname" th:field="*{firstname}"/></td></tr>
@@ -21,12 +28,15 @@
             <tr><td>Email</td><td> <input th:type="email" name="email" th:field="*{email}"/></td></tr>
             <tr><td>birthday</td><td> <input th:type="date" name="birthday" th:field="*{birthday}"/></td></tr>
             <tr><td>age</td><td> <input type="number" name="age" th:field="*{age}"/></td></tr>
-            <!--<tr><td>enabled</td><td> <input type="radio"  name="enabled" value="false" th:field="*{enabled}"/></td></tr>-->
-            <tr><td>enabled</td><td> <input type="radio" th:field="*{enabled}" th:value="false" /></td></tr>
-        <tr><td></td><td> <input type="submit" th:type="submit" class="btn waves-light" vlaue="signup" /></td></tr>
+            <tr><td></td><td> <input type="submit" th:type="submit" class="btn waves-light" vlaue="signup" /></td></tr>
 
-    </table>
+        </table>
 </form>
+    </div>
+
+    </div>
+    <div class="col l4 m4"></div>
+
 
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->

@@ -6,28 +6,17 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="assets/css/materialize.min.css" th:href="@{assets/css/materialize.min.css}" media="all"/>
-    <link rel="stylesheet" href="assets/css/style.css" th:href="@{assets/css/style.css}" media="all"/>
+    <link rel="stylesheet" href="/static/assets/css/materialize.min.css" th:href="@{assets/css/materialize.min.css}" media="all"/>
+    <link rel="stylesheet" href="/static/assets/css/style.css" th:href="@{assets/css/style.css}" media="all"/>
 
 
 </head>
 
 <body>
 
-    <nav id="navbar" class="row">
-        <div class="nav-wrapper z-depth-0">
 
-            <a id="logo" href="/" class="brand-logo">VA</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>
-                    <form>
-                        <a class="logoutbtn btn white z-depth-1"
-                           id="logoutbtn">logout</a>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
+
+    <h1 th:value="${login.username}"></h1>
 
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="materialize.min.js"></script>

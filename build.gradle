@@ -43,7 +43,6 @@ dependencies {
     compile('javax.xml.bind:jaxb-api:2.3.0')
     compile('org.postgresql:postgresql')
     runtime('org.springframework.boot:spring-boot-devtools')
-
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 }

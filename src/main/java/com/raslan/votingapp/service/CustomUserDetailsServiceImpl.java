@@ -3,7 +3,6 @@ package com.raslan.votingapp.service;
 import com.raslan.votingapp.repository.UserRepository;
 import com.raslan.votingapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,6 +23,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         }
         return new CustomUserDetails(user);
     }
+
 
 
 }
