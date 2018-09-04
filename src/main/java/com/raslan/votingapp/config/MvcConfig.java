@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,12 +21,6 @@ import javax.servlet.http.HttpSession;
 public class MvcConfig implements WebMvcConfigurer {
 
 
-    @Autowired
-    HttpSession session;
-
-
-    @Autowired
-    private Environment env;
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
 
@@ -36,11 +32,5 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/signup").setViewName("signup");
         registry.addViewController("/users/signup").setViewName("signup");
-
-
-
     }
-
-
-
 }

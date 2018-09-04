@@ -1,18 +1,15 @@
 package com.raslan.votingapp.controller;
 
-import com.raslan.votingapp.model.LoginModel;
-import com.raslan.votingapp.model.User;
 
+import com.raslan.votingapp.model.User;
 import com.raslan.votingapp.repository.RoleRepository;
 import com.raslan.votingapp.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -21,53 +18,43 @@ import java.util.List;
 
 public class RegisterController {
 
-    @Autowired
-    UserRepository repository;
-    @Autowired
-    RoleRepository roleRepository;
 
-    LoginModel lm;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
+
+
+    @GetMapping("home")
+    public String index(Model model){
+        String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userRepository.findByUsername(currentUserName);
+        model.addAttribute("currentUser", currentUser);
+        return "home";
+    }
 
 
     @GetMapping("signup")
-    public String getOneUser(Model model,User user){
+    public String getOneUser(Model model, User user){
         model.addAttribute("user",user);
         return "signup";
     }
+
+
     @PostMapping("signup")
-    public String setOneUser( User user){
+    public String setOneUser(Model model, User user){
         user.setEnabled(true);
         user.setRole(roleRepository.findByName("ROLE_USER"));
-        repository.save(user);
-        return "signup";
-    }
-
-   @GetMapping
-    public String getIndex(Model model, LoginModel loginModel){
-        model.addAttribute("loginModel", loginModel);
-        return "index";
-    }
-    @PostMapping
-    public String postIndex(@Valid @RequestBody LoginModel loginModel){
-        return "index";
-    }
-
-    @GetMapping("home")
-
-    public String gethome(Model model, LoginModel loginModel){
-        model.addAttribute("login", this.lm);
-        System.out.println(this.lm.getUsername());
+        userRepository.save(user);
+        model.addAttribute("currentUser", user);
         return "home";
     }
-    @PostMapping("home")
-    public String posthome( LoginModel loginModel){
-        System.out.println(loginModel.getUsername());
-        return "home";
-    }
+
 
     @GetMapping("users")
     public String getUsers(Model model){
-        List<User> users= repository.findAll();
+        List<User> users= userRepository.findAll();
         model.addAttribute("users",users);
         return "users";
     }
