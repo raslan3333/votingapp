@@ -24,6 +24,4 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
-
-
 }

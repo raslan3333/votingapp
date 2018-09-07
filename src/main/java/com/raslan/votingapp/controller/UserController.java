@@ -35,15 +35,15 @@ public class UserController {
 
 
 
-    @GetMapping("/users/{id}")
-    User getOneUser(@PathVariable Long id){
+    @GetMapping("/user/{id}")
+    public User getOneUser(@PathVariable Long id){
         return userRepository.findById(id).get();
     }
 
 
 
-    @PutMapping("/users/{id}")
-    User updateUser(@Valid @RequestBody UserData userData, @PathVariable Long id) throws Exception {
+    @PutMapping("/user/{id}")
+    public User updateUser(@Valid @RequestBody UserData userData, @PathVariable Long id) throws Exception {
         return userRepository.findById(id).map(us -> {
             BeanUtils.copyProperties(userData , us);
             us.setId(id);
@@ -52,8 +52,8 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id){
+    @DeleteMapping("/user/{id}")
+    public void deleteUser(@PathVariable Long id){
         userRepository.deleteById(id);
     }
 

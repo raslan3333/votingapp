@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -41,10 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationProvider;
     }
 
-/*        @Bean
+        @Bean
         public PasswordEncoder encoder() {
             return NoOpPasswordEncoder.getInstance();
-        }*/
+        }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -60,11 +61,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http
-                .authorizeRequests().antMatchers("/profile", "/user/**", "/signup")
-                .permitAll()
-                .antMatchers("/profile").access("permitAll()")
-                .antMatchers("/home")
-                .hasAnyRole("USER").anyRequest().fullyAuthenticated()
+                .authorizeRequests().antMatchers("/login", "/signup", "/")
+                .access("hasRole('ANONYMOUS') and denyAll()")
+                .antMatchers("/test").access("permitAll()")
+                .antMatchers("/user/**", "/profile", "/home").access("hasRole('ADMIN')")
+                .anyRequest().fullyAuthenticated()
+                .antMatchers("/profile", "/home")
+                .access("hasRole('USER')").anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -86,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private AuthenticationFailureHandler loginFailureHandler() {
         return (request, response, exception) -> {
-
+            response.sendRedirect("/");
         };
     }
 

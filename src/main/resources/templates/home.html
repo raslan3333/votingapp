@@ -16,7 +16,7 @@
 
 
 
-    <h1 th:text="'hallo '+${currentUser.username}">Hallo</h1>
+    <h1 th:text="'Hallo ' + *{currentUser.getUsername()}">Hallo</h1>
 
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="materialize.min.js"></script>
