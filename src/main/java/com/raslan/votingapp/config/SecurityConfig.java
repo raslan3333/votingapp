@@ -62,11 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests().antMatchers("/login", "/signup", "/")
-                .access("hasRole('ANONYMOUS') and denyAll()")
+                .access("hasRole('ANONYMOUS')")
                 .antMatchers("/test").access("permitAll()")
-                .antMatchers("/user/**", "/profile", "/home").access("hasRole('ADMIN')")
-                .anyRequest().fullyAuthenticated()
-                .antMatchers("/profile", "/home")
+                .antMatchers("/user/**").access("hasRole('ADMIN')")
+                .anyRequest().authenticated()
+                .antMatchers()
                 .access("hasRole('USER')").anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin()
@@ -92,6 +92,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             response.sendRedirect("/");
         };
     }
-
-
 }

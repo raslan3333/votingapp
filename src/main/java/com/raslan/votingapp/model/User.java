@@ -1,8 +1,9 @@
 package com.raslan.votingapp.model;
 
+
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.stereotype.Component;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

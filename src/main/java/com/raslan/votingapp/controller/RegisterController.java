@@ -74,7 +74,7 @@ public class RegisterController {
     @GetMapping
     public String index(HttpServletResponse res) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        boolean hasUserRole = auth.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ROLE_USER"));
+        boolean hasUserRole = auth.getAuthorities().stream().anyMatch(role -> role.getAuthority().contains("ROLE_ADMIN"));
         String[] hasAnyRole = auth.getAuthorities().toString().split("\\W+");
         List<String> arrayList = new ArrayList<>(Arrays.asList(hasAnyRole));
 
